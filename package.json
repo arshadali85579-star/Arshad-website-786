@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "sync": "node scripts/auto-sync.cjs --now",
+    "sync:watch": "node scripts/auto-sync.cjs",
+    "sync:status": "node scripts/auto-sync.cjs --status"
   },
   "dependencies": {
     "clsx": "^2.1.1",
