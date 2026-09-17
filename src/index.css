@@ -1,0 +1,238 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --nx-ink-950: #040506;
+    --nx-ink-900: #07090b;
+    --nx-ink-800: #0e1216;
+    --nx-ink-700: #161c23;
+    --nx-paper-0: #ffffff;
+    --nx-paper-100: #f7f4ee;
+    --nx-paper-200: #eeeae2;
+    --nx-paper-300: #e3ded3;
+    --nx-yellow-400: #fbe052;
+    --nx-yellow-500: #f2d02f;
+    --nx-stone-300: #c5bfb2;
+    --nx-stone-400: #948e82;
+    --nx-stone-500: #676258;
+    --nx-line-dark: rgba(247, 244, 238, 0.15);
+    --nx-line-light: rgba(7, 9, 11, 0.14);
+  }
+
+  html {
+    scroll-behavior: auto; /* Lenis handles smooth scrolling */
+    background-color: var(--nx-ink-900);
+    color: var(--nx-paper-100);
+    font-family: 'Archivo', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  body {
+    overflow-x: hidden;
+    min-height: 100vh;
+    background-color: var(--nx-ink-900);
+    color: var(--nx-paper-100);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Film Grain Texture - Optimized Singleton GPU Compositing */
+.nx-grain {
+  position: relative;
+}
+
+.nx-global-grain {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 40;
+  opacity: 0.035;
+  transform: translateZ(0);
+  will-change: transform;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Architectural Dashed Rails */
+.nx-dashed-rail {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  border-left: 1px dashed var(--nx-line-light);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.nx-dashed-rail--left {
+  left: clamp(1rem, 4vw, 3rem);
+}
+
+.nx-dashed-rail--right {
+  right: clamp(1rem, 4vw, 3rem);
+}
+
+.nx-dashed-rail--dark {
+  border-left-color: var(--nx-line-dark);
+}
+
+/* UI Points & Badges */
+.ui-point {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+}
+
+.ui-hash {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.75rem;
+  border: 1px dashed var(--nx-line-light);
+  background: transparent;
+  color: var(--nx-stone-500);
+}
+
+.ui-hash.white {
+  border-color: var(--nx-line-dark);
+  color: var(--nx-stone-300);
+}
+
+.ui-cont {
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.25rem, 5vw, 4rem);
+  padding-right: clamp(1.25rem, 5vw, 4rem);
+}
+
+/* Primary Action Buttons */
+.nx-btn {
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  display: inline-flex;
+  align-items: stretch;
+  border: 1px solid transparent;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.nx-btn:active {
+  transform: scale(0.98);
+}
+
+.nx-btn--primary {
+  color: var(--nx-ink-950);
+  background-color: var(--nx-yellow-400);
+  border-color: var(--nx-yellow-400);
+}
+
+.nx-btn--primary:hover {
+  background-color: var(--nx-yellow-500);
+  border-color: var(--nx-yellow-500);
+}
+
+.nx-btn--primary .nx-btn__icon {
+  border-right: 1px dashed rgba(7, 9, 11, 0.3);
+  display: flex;
+  align-items: center;
+  padding: 0 1.1rem;
+  font-size: 1rem;
+}
+
+.nx-btn--primary .nx-btn__label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 1.75rem;
+  font-weight: 700;
+}
+
+.nx-btn--ghost {
+  color: inherit;
+  background: transparent;
+  border: 1px dashed var(--nx-line-dark);
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.6rem;
+  opacity: 0.9;
+}
+
+.nx-btn--ghost:hover {
+  opacity: 1;
+  background: rgba(247, 244, 238, 0.08);
+  border-color: var(--nx-yellow-400);
+  color: var(--nx-yellow-400);
+}
+
+.nx-btn--ghost-light {
+  border-color: var(--nx-line-light);
+  color: var(--nx-ink-900);
+}
+
+.nx-btn--ghost-light:hover {
+  background: rgba(7, 9, 11, 0.05);
+  border-color: var(--nx-ink-900);
+  color: var(--nx-ink-900);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #07090b;
+}
+::-webkit-scrollbar-thumb {
+  background: #2b333c;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #fbe052;
+}
+
+/* Floating animation */
+@keyframes nx-bob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+.animate-bob {
+  animation: nx-bob 2s ease-in-out infinite;
+}
+
+/* Ticker marquee */
+@keyframes nx-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: nx-marquee 32s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
