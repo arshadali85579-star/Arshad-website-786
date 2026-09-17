@@ -16,7 +16,7 @@ echo.
 echo Git Status:
 git status --short
 if %ERRORLEVEL% equ 0 (
-    git status -s | findstr /R "." >nul || echo Working tree clean (no uncommitted changes)
+    git status -s | findstr /R "." >nul || echo Working tree clean - no uncommitted changes
 )
 echo.
 echo Last Commit:
